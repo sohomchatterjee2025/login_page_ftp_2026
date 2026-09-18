@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foreign Training Portal (FTP) | Students’ International Relations Cell, IIT Kharagpur</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="page-container">
+    <!-- LEFT PANEL: Dynamic Text Carousel Showcase (Desktop Left, Mobile Order 2) -->
+    <aside class="left-panel">
+      <!-- Carousel Content Showcase Box with Square Shadow & Fixed Dimensions -->
+      <main class="carousel-container" id="carouselContainer">
+        <div class="slides-wrapper">
+          <!-- Slide 1 -->
+          <article class="carousel-slide active" data-slide="0">
+            <span class="slide-tag">GLOBAL RESEARCH EXPOSURE</span>
+            <h1 class="slide-heading">Connecting IITKGP Scholars with World-Class Research</h1>
+            <p class="slide-description">
+              Explore prestigious international research internships, university exchange programs, and summer
+              fellowships across top-tier global institutions.
+            </p>
+          </article>
+
+          <!-- Slide 2 -->
+          <article class="carousel-slide" data-slide="1">
+            <span class="slide-tag">FOREIGN TRAINING PORTAL</span>
+            <h2 class="slide-heading">Seamless Application & Institutional Endorsement</h2>
+            <p class="slide-description">
+              Track your application status in real-time, request official NOCs, submit recommendation letters, and
+              receive institute verification through one unified portal.
+            </p>
+          </article>
+
+          <!-- Slide 3 -->
+          <article class="carousel-slide" data-slide="2">
+            <span class="slide-tag">GLOBAL PARTNERSHIPS</span>
+            <h2 class="slide-heading">Collaborations with 50+ Premier Global Labs</h2>
+            <p class="slide-description">
+              Discover bilateral research opportunities with Max Planck Institutes, INRIA, NUS, ETH Zurich, University
+              of Cambridge, and corporate R&D hubs worldwide.
+            </p>
+          </article>
+
+          <!-- Slide 4 -->
+          <article class="carousel-slide" data-slide="3">
+            <span class="slide-tag">GRANTS & SCHOLARSHIPS</span>
+            <h2 class="slide-heading">Comprehensive Financial & Travel Assistance</h2>
+            <p class="slide-description">
+              Access guidelines for IITKGP Alumni Travel Grants, host university stipends, and international fellowship
+              funding options in your personal dashboard.
+            </p>
+          </article>
+        </div>
+
+        <!-- Solid Accent Progress Bar & Controls Footer -->
+        <div class="carousel-controls">
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+          </div>
+
+          <div class="controls-bottom-row">
+            <div class="slide-counter">
+              <span id="currentSlideNum">01</span>
+              <span class="counter-divider">/</span>
+              <span id="totalSlideNum">04</span>
+            </div>
+
+            <!-- Bullet Dots -->
+            <div class="carousel-dots" id="carouselDots">
+              <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+              <button class="dot" data-index="1" aria-label="Slide 2"></button>
+              <button class="dot" data-index="2" aria-label="Slide 3"></button>
+              <button class="dot" data-index="3" aria-label="Slide 4"></button>
+            </div>
+
+            <!-- Left/Right Nav Arrows -->
+            <div class="control-actions">
+              <button class="icon-btn" id="prevSlideBtn" title="Previous Slide" aria-label="Previous Slide">
+                <i data-feather="chevron-left"></i>
+              </button>
+              <button class="icon-btn" id="nextSlideBtn" title="Next Slide" aria-label="Next Slide">
+                <i data-feather="chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Uniform Solid Curved Border Divider permanently conjoined with Left Half -->
+      <div class="panel-curve-divider" aria-hidden="true">
+        <svg viewBox="0 0 60 1000" preserveAspectRatio="none" class="curve-svg" xmlns="http://www.w3.org/2000/svg">
+          <path class="curve-path" d="M-2,0 L0,0 C60,250 60,750 0,1000 L-2,1000 Z" />
+        </svg>
+      </div>
+    </aside>
+
+    <!-- RIGHT PANEL: 3D Lateral Flip Shadow-Bordered Box (Desktop Right, Mobile Order 1 at TOP) -->
+    <main class="right-panel">
+      <!-- Institutional Branding Header -->
+      <header class="right-brand-header">
+        <div class="brand-identity">
+          <div class="brand-logos">
+            <img src="irc_logo-removebg-preview.png" alt="SIRC Logo" class="brand-logo-img irc-logo" />
+            <img src="iitkgp_logo-removebg-preview.png" alt="IIT Kharagpur Logo" class="brand-logo-img iitkgp-logo" />
+          </div>
+          <div class="brand-text">
+            <h1 class="brand-title-main">Foreign Training Program</h1>
+          </div>
+        </div>
+      </header>
+
+      <!-- 3D Perspective Card Container (Locked Dimensions matching Left Box) -->
+      <div class="auth-card-perspective" id="authPerspective">
+        <div class="auth-card-flipper" id="authCardFlipper">
+
+          <!-- ================= FRONT FACE: SIGN IN ================= -->
+          <section class="auth-card-face auth-card-front" aria-label="Sign In Form Box">
+            <!-- Header Tabs -->
+            <div class="auth-tabs" role="tablist">
+              <button type="button" class="auth-tab active" id="tabSignInFront" role="tab" aria-selected="true">Sign
+                In</button>
+              <button type="button" class="auth-tab" id="tabRegisterFront" role="tab"
+                aria-selected="false">Register</button>
+            </div>
+
+            <!-- Alert Notification Box -->
+            <div class="alert-box hidden" id="loginAlertBox">
+              <span id="loginAlertMessage"></span>
+            </div>
+
+            <!-- Login Form (Fields: email, password) -->
+            <form id="loginForm" class="auth-form" novalidate>
+              <!-- Email Field with Format Check -->
+              <div class="form-group">
+                <label for="loginEmail" class="form-label">Email</label>
+                <input type="email" id="loginEmail" class="basic-input"
+                  placeholder="xyz@kgpian.iitkgp.ac.in or xyz@iitkgp.ac.in" required autocomplete="email" />
+                <span class="field-error" id="loginEmailError"></span>
+              </div>
+
+              <!-- Password Field with Functional Eye Button -->
+              <div class="form-group">
+                <label for="loginPassword" class="form-label">Password</label>
+                <div class="password-wrapper">
+                  <input type="password" id="loginPassword" class="basic-input" placeholder="Enter your password"
+                    required autocomplete="current-password" />
+                  <button type="button" class="eye-toggle" id="toggleLoginPassword" aria-label="Show password"
+                    title="Toggle password visibility">
+                    <i data-feather="eye"></i>
+                  </button>
+                </div>
+                <span class="field-error" id="loginPasswordError"></span>
+              </div>
+
+              <div class="form-options">
+                <a href="javascript:void(0)" class="link-text" id="forgotPasswordBtn">Forgot password?</a>
+              </div>
+
+              <button type="submit" class="primary-btn" id="loginSubmitBtn">
+                <span id="loginBtnText">Sign In</span>
+              </button>
+            </form>
+
+            <!-- Card Bottom Switch Link -->
+            <div class="card-switch-row">
+              <span class="switch-text">Don't have an account?</span>
+              <button type="button" class="switch-link-btn" id="linkToRegister">Register here</button>
+            </div>
+          </section>
+
+          <!-- ================= BACK FACE: REGISTER ================= -->
+          <section class="auth-card-face auth-card-back" aria-label="Register Form Box">
+            <!-- Header Tabs -->
+            <div class="auth-tabs" role="tablist">
+              <button type="button" class="auth-tab" id="tabSignInBack" role="tab" aria-selected="false">Sign
+                In</button>
+              <button type="button" class="auth-tab active" id="tabRegisterBack" role="tab"
+                aria-selected="true">Register</button>
+            </div>
+
+            <!-- Alert Notification Box -->
+            <div class="alert-box hidden" id="registerAlertBox">
+              <span id="registerAlertMessage"></span>
+            </div>
+
+            <!-- Register Form (Fields: email, password, re-enter password) -->
+            <form id="registerForm" class="auth-form" novalidate>
+              <!-- Email Field with Format Check -->
+              <div class="form-group">
+                <label for="registerEmail" class="form-label">Email</label>
+                <input type="email" id="registerEmail" class="basic-input"
+                  placeholder="xyz@kgpian.iitkgp.ac.in or xyz@iitkgp.ac.in" required autocomplete="email" />
+                <span class="field-error" id="registerEmailError"></span>
+              </div>
+
+              <!-- Password Field with Functional Eye Button -->
+              <div class="form-group">
+                <label for="registerPassword" class="form-label">Password</label>
+                <div class="password-wrapper">
+                  <input type="password" id="registerPassword" class="basic-input" placeholder="Create password"
+                    required autocomplete="new-password" />
+                  <button type="button" class="eye-toggle" id="toggleRegisterPassword" aria-label="Show password"
+                    title="Toggle password visibility">
+                    <i data-feather="eye"></i>
+                  </button>
+                </div>
+                <span class="field-error" id="registerPasswordError"></span>
+              </div>
+
+              <!-- Re-enter Password Field with Functional Eye Button -->
+              <div class="form-group">
+                <label for="registerConfirmPassword" class="form-label">Re-enter Password</label>
+                <div class="password-wrapper">
+                  <input type="password" id="registerConfirmPassword" class="basic-input"
+                    placeholder="Re-enter password" required autocomplete="new-password" />
+                  <button type="button" class="eye-toggle" id="toggleRegisterConfirmPassword" aria-label="Show password"
+                    title="Toggle password visibility">
+                    <i data-feather="eye"></i>
+                  </button>
+                </div>
+                <span class="field-error" id="registerConfirmPasswordError"></span>
+              </div>
+
+              <button type="submit" class="primary-btn" id="registerSubmitBtn">
+                <span id="registerBtnText">Register Account</span>
+              </button>
+            </form>
+
+            <!-- Card Bottom Switch Link -->
+            <div class="card-switch-row">
+              <span class="switch-text">Already registered?</span>
+              <button type="button" class="switch-link-btn" id="linkToSignIn">Sign In here</button>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- Right Panel Bottom Connect Options (Official Brand Colored Buttons) -->
+      <footer class="panel-footer panel-footer-light">
+        <div class="bottom-links-bar">
+          <div class="social-links-row">
+            <div style="color: #1877F2;">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M22 12.037C22 6.494 17.523 2 12 2S2 6.494 2 12.037c0 4.707 3.229 8.656 7.584 9.741v-6.674H7.522v-3.067h2.062v-1.322c0-3.416 1.54-5 4.882-5 .634 0 1.727.125 2.174.25v2.78a12.807 12.807 0 0 0-1.155-.037c-1.64 0-2.273.623-2.273 2.244v1.085h3.266l-.56 3.067h-2.706V22C18.164 21.4 22 17.168 22 12.037z" />
+              </svg>
+            </div>
+            <a href="https://www.instagram.com/irc.iitkgp/" target="_blank" rel="noopener noreferrer"
+              class="social-icon-btn social-btn-instagram" title="Instagram" aria-label="Instagram">
+              <img src="insta_logo_12.png" alt="Instagram" class="social-logo-img" />
+            </a>
+            <a href="https://www.linkedin.com/company/international-relations-cell-iit-kharagpur/mycompany/"
+              target="_blank" rel="noopener noreferrer" class="social-icon-btn social-btn-linkedin" title="LinkedIn"
+              aria-label="LinkedIn">
+              <img src="linkedin_logo-removebg-preview.png" alt="LinkedIn" class="social-logo-img" />
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ftp.ircell@gmail.com" target="_blank"
+              rel="noopener noreferrer" class="social-icon-btn social-btn-gmail" id="gmailConnectBtn" title="Gmail"
+              aria-label="Gmail">
+              <img src="gmail_logo-removebg-preview.png" alt="Gmail" class="social-logo-img" />
+            </a>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

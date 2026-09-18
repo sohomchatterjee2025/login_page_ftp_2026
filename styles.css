@@ -1,0 +1,865 @@
+/* ==========================================================================
+   SIRC IIT Kharagpur - Foreign Training Portal (FTP)
+   Split Hemisphere Layout with Uniform Solid Curved Border & 3D Lateral Flip Card
+   FLAT SOLID AESTHETICS - ZERO GRADIENTS EVERYWHERE
+   ========================================================================== */
+
+:root {
+  /* Permanent Theme: Graphite Slate */
+  --panel-left-bg: #181E24;
+  --panel-right-bg: #F1F5F9;
+
+  --primary-accent: #334155;
+  --primary-accent-hover: #1E293B;
+  --brand-ftp-blue: #074D85;
+  --progress-fill-bg: #334155;
+  --active-dot-bg: #64748B;
+  --focus-ring: rgba(51, 65, 85, 0.25);
+
+  --text-dark-primary: #0F172A;
+  --text-dark-secondary: #475569;
+  --text-dark-muted: #64748B;
+  --text-light-primary: #FFFFFF;
+  --text-light-secondary: #CBD5E1;
+  --text-light-muted: #94A3B8;
+
+  --right-card-bg: #FFFFFF;
+  --right-card-border: rgba(226, 232, 240, 0.95);
+  --right-card-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.08), 0 8px 18px -4px rgba(15, 23, 42, 0.04);
+  --right-input-bg: #F8FAFC;
+  --right-input-border: #CBD5E1;
+  --auth-tabs-border: #E2E8F0;
+  --switch-border: #F1F5F9;
+
+  --font-heading: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  /* Card Dimension Consts */
+  --card-box-width: 490px;
+  --card-box-height: 480px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-body);
+  background-color: var(--panel-left-bg);
+  color: var(--text-dark-primary);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.page-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   LEFT PANEL - TEXT CAROUSEL SHOWCASE WITH UNIFORM SOLID CURVED BORDER
+   ========================================================================== */
+
+.left-panel {
+  position: relative;
+  width: 50%;
+  min-height: 100vh;
+  background-color: var(--panel-left-bg);
+  background: var(--panel-left-bg);
+  /* SOLID UNIFORM COLOR - NO GRADIENT */
+  color: var(--text-light-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 3.5rem;
+  z-index: 2;
+  box-shadow: none;
+  /* Seamless conjoined flow - no straight line cutoff */
+  transition: background-color 0.3s ease;
+}
+
+/* Curved Divider permanently conjoined in style and color with Left Half */
+.panel-curve-divider {
+  position: absolute;
+  top: 0;
+  left: calc(100% - 1.5px);
+  width: 45px;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(6px 0 14px rgba(0, 0, 0, 0.08));
+}
+
+.curve-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.curve-path {
+  fill: var(--panel-left-bg) !important;
+  stroke: none !important;
+  transition: fill 0.3s ease;
+}
+
+/* CAROUSEL SHOWCASE CONTAINER (Solid Translucent Box - No Gradient) */
+.carousel-container {
+  position: relative;
+  z-index: 2;
+  margin: auto 0;
+  max-width: var(--card-box-width);
+  width: 100%;
+  height: var(--card-box-height);
+  min-height: var(--card-box-height);
+  max-height: var(--card-box-height);
+  background-color: var(--theme-card-bg);
+  background: var(--theme-card-bg);
+  /* SOLID - NO GRADIENT */
+  border: 1px solid var(--theme-card-border);
+  border-radius: 12px;
+  padding: 2.25rem 2.25rem;
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 20px 45px -10px rgba(0, 0, 0, 0.45),
+    0 8px 18px -4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.slides-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carousel-slide.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.slide-tag {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--accent-badge);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+  transition: color 0.3s ease;
+}
+
+.slide-heading {
+  font-family: var(--font-heading);
+  font-size: 1.95rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text-light-primary);
+  margin-bottom: 1.1rem;
+  letter-spacing: -0.4px;
+}
+
+.slide-description {
+  font-size: 0.975rem;
+  line-height: 1.6;
+  color: var(--text-light-secondary);
+}
+
+/* Progress Bar & Controls (Solid Accent - Zero Gradient) */
+.carousel-controls {
+  margin-top: 1.5rem;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background-color: var(--progress-fill-bg);
+  background: var(--progress-fill-bg);
+  /* SOLID - NO GRADIENT */
+  transition: width 0.1s linear, background-color 0.3s ease;
+}
+
+.controls-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slide-counter {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-light-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.counter-divider {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 400;
+}
+
+#totalSlideNum {
+  color: var(--text-light-muted);
+}
+
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 20px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.dot.active {
+  width: 30px;
+  background-color: var(--active-dot-bg);
+  background: var(--active-dot-bg);
+}
+
+.control-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-light-primary);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.icon-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ==========================================================================
+   RIGHT PANEL - 3D LATERAL FLIP SHADOW-BORDERED BOX (Solid Background - No Gradient)
+   ========================================================================== */
+
+.right-panel {
+  position: relative;
+  width: 50%;
+  min-height: 100vh;
+  background-color: var(--panel-right-bg);
+  background: var(--panel-right-bg);
+  /* SOLID - NO GRADIENT */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.25rem 3.5rem;
+  z-index: 1;
+  transition: background-color 0.3s ease;
+}
+
+/* Right Panel Institutional Brand Header */
+.right-brand-header {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--card-box-width);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.65rem;
+  width: 100%;
+}
+
+.brand-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  flex-shrink: 0;
+}
+
+.brand-logo-img {
+  display: block;
+  object-fit: contain;
+}
+
+.irc-logo,
+.iitkgp-logo {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.2rem;
+}
+
+.brand-title-main {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--brand-ftp-blue);
+  letter-spacing: -0.4px;
+  line-height: 1.25;
+}
+
+.brand-subtitle-short {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #334155;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* 3D Flip Perspective Container */
+.auth-card-perspective {
+  perspective: 1400px;
+  width: 100%;
+  max-width: var(--card-box-width);
+  height: var(--card-box-height);
+  min-height: var(--card-box-height);
+  max-height: var(--card-box-height);
+  margin: auto 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.auth-card-flipper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: rotateY(0deg);
+}
+
+/* Auth Card Face */
+.auth-card-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 2.25rem 2.25rem;
+  background: var(--right-card-bg);
+  border: 1px solid var(--right-card-border);
+  box-shadow: var(--right-card-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-card-front {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.auth-card-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+/* Auth Mode Tabs (Sign In / Register) */
+.auth-tabs {
+  display: flex;
+  gap: 1.75rem;
+  border-bottom: 1px solid var(--auth-tabs-border);
+  margin-bottom: 0.85rem;
+}
+
+.auth-tab {
+  background: transparent;
+  border: none;
+  padding-bottom: 0.65rem;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-dark-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.auth-tab:hover {
+  color: var(--primary-accent);
+}
+
+.auth-tab.active {
+  color: var(--primary-accent);
+  font-weight: 800;
+}
+
+.auth-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background-color: var(--primary-accent);
+  border-radius: 2px;
+  transition: background-color 0.3s ease;
+}
+
+/* Alert Box */
+.alert-box {
+  padding: 0.65rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.alert-box.hidden {
+  display: none;
+}
+
+.alert-box.info {
+  background: #F1F5F9;
+  color: var(--text-dark-primary);
+  border: 1px solid #CBD5E1;
+}
+
+.alert-box.success {
+  background: #ECFDF5;
+  color: #065F46;
+  border: 1px solid #A7F3D0;
+}
+
+.alert-box.error {
+  background: #FEF2F2;
+  color: #991B1B;
+  border: 1px solid #FECACA;
+}
+
+/* Auth Form */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-label {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark-primary);
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.link-text {
+  font-size: 0.78rem;
+  color: var(--primary-accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.link-text:hover {
+  text-decoration: underline;
+}
+
+/* Basic Input Fields */
+.basic-input {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-dark-primary);
+  background-color: var(--right-input-bg);
+  border: 1px solid var(--right-input-border);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.basic-input:focus {
+  background-color: var(--right-card-bg);
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+/* Password Visibility Wrapper */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper .basic-input {
+  padding-right: 2.5rem;
+}
+
+.eye-toggle {
+  position: absolute;
+  right: 0.65rem;
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  padding: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.eye-toggle:hover {
+  color: var(--primary-accent);
+  background-color: var(--focus-ring);
+}
+
+.eye-toggle svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* Red Small Institute Note */
+.field-error {
+  font-size: 0.72rem;
+  color: #DC2626;
+  min-height: 0.95rem;
+  font-weight: 500;
+}
+
+/* Options */
+.form-options {
+  display: flex;
+  align-items: center;
+  margin-top: -0.2rem;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--text-dark-secondary);
+}
+
+.checkbox-container input {
+  accent-color: var(--primary-accent);
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* Primary Button */
+.primary-btn {
+  width: 100%;
+  padding: 0.8rem 1.1rem;
+  background-color: var(--primary-accent);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-size: 0.925rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px var(--focus-ring);
+}
+
+.primary-btn:hover {
+  background-color: var(--primary-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px var(--focus-ring);
+}
+
+.primary-btn:active {
+  transform: translateY(0);
+}
+
+/* Card Bottom Switch Link Row */
+.card-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--switch-border);
+  font-size: 0.8rem;
+}
+
+.switch-text {
+  color: var(--text-dark-secondary);
+}
+
+.switch-link-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary-accent);
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: text-decoration 0.2s, color 0.2s;
+  padding: 0;
+}
+
+.switch-link-btn:hover {
+  text-decoration: underline;
+  color: var(--primary-accent-hover);
+}
+
+/* ==========================================================================
+   RIGHT PANEL FOOTER - CONNECT OPTIONS
+   ========================================================================== */
+
+.panel-footer {
+  width: 100%;
+  max-width: var(--card-box-width);
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.bottom-links-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+/* Social Links Row (Official Brand Colored Buttons) */
+.social-links-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.95rem;
+  width: 100%;
+}
+
+.social-icon-btn {
+  width: 50px;
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+
+.social-logo-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.social-icon-btn:hover .social-logo-img {
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   MOBILE & INSPECT VIEW OPTIMIZATION (Login placed FIRST at top)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .page-container {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
+  /* Hide vertical curve divider on mobile stacked layout */
+  .panel-curve-divider {
+    display: none;
+  }
+
+  /* Right Panel (Auth & Connect) comes FIRST at top on mobile */
+  .right-panel {
+    order: 1;
+    width: 100%;
+    min-height: 100vh;
+    padding: 1.5rem 1.25rem 2rem 1.25rem;
+    justify-content: flex-start;
+    gap: 1.25rem;
+  }
+
+  .right-brand-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .auth-card-perspective {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* Left Panel (Showcase) comes SECOND below login */
+  .left-panel {
+    order: 2;
+    width: 100%;
+    min-height: auto;
+    padding: 2.5rem 1.25rem;
+    box-shadow: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .carousel-container {
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --card-box-height: 485px;
+  }
+
+  .right-panel {
+    padding: 1rem 0.85rem 1.5rem 0.85rem;
+    gap: 1rem;
+  }
+
+  .brand-title-main {
+    font-size: 1.28rem;
+  }
+
+  .brand-subtitle-short {
+    font-size: 0.72rem;
+  }
+
+  .irc-logo,
+  .iitkgp-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+  }
+
+  .auth-card-face {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .social-links-row {
+    gap: 0.75rem;
+  }
+
+  .social-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+
+  .social-logo-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .slide-heading {
+    font-size: 1.55rem;
+  }
+
+  .carousel-container {
+    padding: 1.5rem 1.15rem;
+  }
+}
