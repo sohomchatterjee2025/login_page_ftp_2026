@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     localStorage.removeItem('sirc_ftp_custom_duo');
     localStorage.removeItem('sirc_ftp_theme');
-  } catch (e) {}
+  } catch (e) { }
 
   // Ensure Feather Icons are rendered
   if (typeof feather !== 'undefined') {
